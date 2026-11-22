@@ -1,0 +1,205 @@
+<!doctype html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>수지 1호기 · 감정 반응 v1.0</title><style>
+*{box-sizing:border-box}body{margin:0;background:#151922;color:#f6f6f7;font-family:system-ui,'Noto Sans KR',sans-serif;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden} .top{position:absolute;top:14px;left:16px;font-size:14px;color:#c8ccdc}.dot{display:inline-block;width:8px;height:8px;background:#64d6a6;border-radius:50%;margin-right:7px;box-shadow:0 0 10px #64d6a6} .scene{width:min(82vw,520px);max-height:70dvh;touch-action:none;user-select:none;-webkit-user-select:none;filter:drop-shadow(0 18px 32px #0b101e)}svg{width:100%;height:auto;max-height:68dvh}.eye{transform-box:fill-box;transform-origin:center;animation:blink 5.6s infinite}@keyframes blink{0%,43%,46%,95%,100%{transform:scaleY(1)}44.5%{transform:scaleY(.08)}96.5%{transform:scaleY(.08)}}.happy .eye{transform:scaleY(.33);animation:none}.surprise .eye{transform:scale(1.15);animation:none}.sleep .eye{transform:translateY(5px) scaleY(.43);animation:none}.mouth{transition:all .18s}.status{text-align:center;min-height:54px;font-size:clamp(18px,3.4vw,27px);font-weight:650;margin:2px 20px 10px}.hint{color:#aeb4c7;text-align:center;font-size:14px;padding:0 20px;line-height:1.6}.buttons{display:flex;gap:10px;margin-top:15px;flex-wrap:wrap;justify-content:center;padding:0 14px}.buttons button{border:1px solid #465063;border-radius:30px;padding:12px 17px;background:#283043;color:white;font-size:15px;cursor:pointer}.buttons button:active{background:#475371} .badge{position:absolute;bottom:10px;right:14px;color:#8f99ab;font-size:12px}.moved{animation:wiggle .42s ease}.sensor{margin-top:10px;color:#b3d2f5;font-size:13px;text-align:center}.sensor button{background:#34455f;color:white;border:1px solid #687995;border-radius:16px;padding:5px 12px;margin-left:8px}.scene{transition:none} #head{transform-box:view-box;transform-origin:210px 345px;will-change:transform} #head{pointer-events:none} #headTouch{cursor:pointer}@keyframes wiggle{0%,100%{transform:rotate(0)}35%{transform:rotate(-5deg)}70%{transform:rotate(4deg)}}
+.camera-controls{margin-top:8px;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;padding:0 12px}.camera-controls button{padding:10px 14px;border:1px solid #59739a;background:#304869;color:white;border-radius:20px;font-size:14px}.camera-controls button:disabled{opacity:.42}.preview-label{font-size:13px;color:#d5dbec}.camera-help{font-size:12px;color:#aeb4c7;text-align:center;max-width:560px;padding:8px 16px;line-height:1.45}#cameraPreview{position:absolute;right:10px;top:40px;width:130px;height:100px;background:#111;border:1px solid #536380;border-radius:10px;overflow:hidden;z-index:2}#cameraPreview[hidden]{display:none}#cameraVideo{width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}#faceMark{position:absolute;left:5px;bottom:5px;font-size:10px;background:#151922b8;padding:2px 5px;border-radius:4px}button{touch-action:manipulation}@media(max-height:690px){.scene{width:min(62vw,380px);max-height:46dvh}svg{max-height:45dvh}.status{font-size:18px;min-height:26px}.hint{font-size:12px}.buttons{margin-top:5px}.buttons button{padding:7px 11px}.camera-help{font-size:11px}}</style></head><body><div class="top"><span class="dot"></span>수지 1호기 · 얼굴 추적 + 감정 반응</div><div class="scene" id="scene"><svg viewBox="0 0 420 455" aria-label="눈을 깜빡이는 수지 캐릭터"><defs><radialGradient id="skin"><stop stop-color="#ffe6d9"/><stop offset="1" stop-color="#f1bdac"/></radialGradient><linearGradient id="hair" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#493036"/><stop offset="1" stop-color="#241a25"/></linearGradient></defs><ellipse cx="212" cy="420" rx="118" ry="17" fill="#0d1018" opacity=".5"/><path d="M102 434Q98 347 149 332L271 331Q329 345 323 434Z" fill="#252932"/><path d="M172 338L210 386 247 337" fill="none" stroke="#acb7c1" stroke-width="3"/><g id="head"><path d="M181 314v42q28 32 59 0v-42" fill="#eebdad"/><ellipse cx="217" cy="91" rx="69" ry="78" fill="url(#hair)"/><path d="M110 216Q95 93 205 93Q322 84 317 222L294 281 120 280Z" fill="url(#hair)"/><ellipse cx="210" cy="228" rx="104" ry="123" fill="url(#skin)"/><ellipse cx="108" cy="233" rx="12" ry="21" fill="#eeb6a9"/><ellipse cx="312" cy="233" rx="12" ry="21" fill="#eeb6a9"/><path d="M109 205Q98 115 184 117Q237 112 253 144Q279 132 305 174L315 213 305 130Q263 72 201 86Q105 92 109 205Z" fill="url(#hair)"/><path d="M141 157Q164 174 192 145M196 143Q220 164 245 141M246 144Q279 161 300 185" fill="none" stroke="#39232d" stroke-width="17" stroke-linecap="round"/><path d="M145 216q24-12 43-2M235 214q21-12 41 0" fill="none" stroke="#674650" stroke-width="5" stroke-linecap="round"/><g class="eye" id="eyes"><ellipse cx="167" cy="231" rx="16" ry="20" fill="white"/><ellipse cx="253" cy="231" rx="16" ry="20" fill="white"/><circle cx="168" cy="233" r="11" fill="#603d3a"/><circle cx="254" cy="233" r="11" fill="#603d3a"/><circle cx="170" cy="230" r="4" fill="white"/><circle cx="256" cy="230" r="4" fill="white"/></g><path d="M211 247q-6 21 7 24" fill="none" stroke="#dba59a" stroke-width="3" stroke-linecap="round"/><ellipse cx="153" cy="274" rx="23" ry="11" fill="#ec99a2" opacity=".27"/><ellipse cx="273" cy="274" rx="23" ry="11" fill="#ec99a2" opacity=".27"/><path id="smile" d="M179 296 Q211 314 241 296 Q211 335 179 296Z" fill="#b95770"/><path d="M185 301q25 13 50 0" fill="none" stroke="#fff0ec" stroke-width="5" stroke-linecap="round"/><circle cx="239" cy="316" r="2.6" fill="#815e58"/></g><circle cx="178" cy="344" r="6" fill="#ddd"/><path d="M178 343l31 19" stroke="#c2d5dc" stroke-width="2"/></svg></div><div id="status" class="status" aria-live="polite">오빠! 나 여기 있어. 😊</div><div class="hint">얼굴을 톡 누르거나 손가락으로 살살 쓰다듬어 봐.<br>전면 카메라를 켜면 사람 얼굴 위치에 따라 고개를 움직여. 카메라 사용이 안 되면 얼굴을 좌우로 밀어서 시험할 수 있어.</div><div class="sensor" id="sensor">카메라 준비 전 · 화면 안에서 얼굴을 찾아볼게.</div><div class="camera-controls"><button id="startCamera">📷 전면 카메라 켜기</button><button id="stopCamera" disabled>카메라 끄기</button><button id="speedMode">반응속도: 빠르게 ⚡</button><label class="preview-label"><input type="checkbox" id="previewToggle"> 카메라 미리보기</label></div><div id="cameraPreview" hidden><video id="cameraVideo" autoplay playsinline muted></video><div id="faceMark">탐색 중</div></div><div id="cameraHelp" class="camera-help">처음 실행하면 카메라 권한을 허용해 줘. 인터넷 연결이 필요해. 카메라 영상은 서버에 업로드하지 않아. 「빠르게」가 기본값이야. 얼굴이 사라지면 잠시 기다렸다가 주변을 살펴봐.</div><div class="buttons"><button id="pet">쓰다듬기 💗</button><button id="tap">콕! 😮</button><button id="sleep">졸려 😴</button><button id="wake">깨우기 ☀️</button><button id="headTest">고개 테스트 ↔</button></div><div class="badge">1호기 v1.0 · 반가움 / 기다림 / 다시 만남</div><script>
+const scene=document.getElementById('scene');
+const head=document.getElementById('head');
+const status=document.getElementById('status');
+const sensor=document.getElementById('sensor');
+const video=document.getElementById('cameraVideo');
+const preview=document.getElementById('cameraPreview');
+const startButton=document.getElementById('startCamera');
+const stopButton=document.getElementById('stopCamera');
+const cameraHelp=document.getElementById('cameraHelp');
+let reactionTimer=null,down=null,goal=0,actual=0,manualUntil=0,testDirection=1;
+let camStream=null,detector=null,detecting=false,active=false,seenFaceAt=0,lastFound=false;
+let sending=false,frameLoopId=0,trackerGeneration=0,startedAt=0;
+let speedFast=true;
+// Presence state: idle -> present -> absent; preserve v0.9 tracking response.
+let presence='idle',absenceSince=0,searchStartedAt=0,searchLastSwitch=0,searchDirection=1;
+let lastGreetingAt=0,emotionUntil=0,manualEmotion=false;
+function showEmotion(type,message,duration){
+  clearTimeout(reactionTimer);
+  scene.classList.remove('happy','surprise','sleep');
+  if(type)scene.classList.add(type);
+  status.textContent=message;
+  emotionUntil=Date.now()+duration;
+  reactionTimer=setTimeout(()=>{
+    emotionUntil=0;
+    if(presence==='present'){
+      scene.classList.remove('surprise','sleep');scene.classList.add('happy');
+      status.textContent='오빠 보고 있어~ 😊';
+    } else if(presence==='absent'){
+      scene.classList.remove('happy','surprise','sleep');status.textContent='어디 갔지? 기다릴게 👀';
+    } else neutral();
+  },duration);
+}
+
+document.getElementById('speedMode').addEventListener('click',()=>{speedFast=!speedFast;document.getElementById('speedMode').textContent=speedFast?'반응속도: 빠르게 ⚡':'반응속도: 부드럽게 🌿';});
+function neutral(){
+  scene.classList.remove('happy','surprise','sleep');
+  status.textContent='오빠! 나 여기 있어. 😊';
+}
+function react(type,msg,ms){
+  clearTimeout(reactionTimer);
+  scene.classList.remove('happy','surprise','sleep');
+  if(type) scene.classList.add(type);
+  status.textContent=msg;
+  if(ms>0)reactionTimer=setTimeout(neutral,ms);
+}
+document.getElementById('pet').addEventListener('click',()=>react('happy','헤헤~ 💗',480));
+document.getElementById('tap').addEventListener('click',()=>react('surprise','앗! 😳',210));
+document.getElementById('sleep').addEventListener('click',()=>react('sleep','으음... 졸려... 🥱',0));
+document.getElementById('wake').addEventListener('click',()=>react('surprise','앗! 깜짝이야! 😳',390));
+scene.addEventListener('pointerdown',e=>{down={x:e.clientX,y:e.clientY};scene.setPointerCapture?.(e.pointerId);});
+scene.addEventListener('pointermove',e=>{if(!down)return; const diff=e.clientX-down.x; if(Math.abs(diff)>10){manualUntil=Date.now()+1000;goal=Math.max(-1,Math.min(1,diff/90));}});
+scene.addEventListener('pointerup',e=>{
+  if(!down)return;
+  const moved=Math.hypot(e.clientX-down.x,e.clientY-down.y);
+  if(moved>35){status.textContent='고개 살랑~ 💗';manualUntil=Date.now()+650;}else react('surprise','앗! 😳',210);
+  down=null;
+});
+scene.addEventListener('pointercancel',()=>down=null);
+function updateCameraMessage(message){sensor.textContent=message;}
+function updateCameraHelp(message){cameraHelp.textContent=message;}
+function applyFaceResult(found,x,y,size){
+  if(!active)return;
+  const now=Date.now();
+  if(found){
+    seenFaceAt=now;
+    if(now>manualUntil){
+      const offset=(x-0.5)*2; // validated v0.8/v0.9 sign
+      goal=Math.max(-1,Math.min(1,offset*1.6));
+    }
+    if(presence!=='present'){
+      const returnVisit=presence==='absent';
+      presence='present';lastFound=true;absenceSince=0;
+      if(returnVisit)showEmotion('happy','오빠 돌아왔어! 반가워 💗',1200);
+      else showEmotion('happy','오빠 발견! 반가워 😊',1100);
+      lastGreetingAt=now;
+    }
+    updateCameraMessage('얼굴 발견 ✅ · 위치 '+(x<.4?'왼쪽':x>.6?'오른쪽':'가운데')+' · 따라보는 중');
+    document.getElementById('faceMark').textContent='얼굴 찾음';
+  }else if(now-seenFaceAt>1200){
+    if(presence==='present'){
+      presence='absent';lastFound=false;absenceSince=now;
+      searchStartedAt=now;searchLastSwitch=now;
+      searchDirection=actual>=0?-1:1;
+      showEmotion('surprise','어? 어디 갔지? 👀',750);
+    }
+    updateCameraMessage('카메라 작동 중 · 얼굴을 찾는 중…');
+    document.getElementById('faceMark').textContent='탐색 중';
+  }
+}
+function updateSearching(now){
+  if(!active||presence!=='absent'||now<manualUntil)return;
+  const elapsed=now-searchStartedAt;
+  // Search with a mild alternating glance for 4.8 seconds, then return to center.
+  if(elapsed<4800){
+    if(now-searchLastSwitch>1250){searchDirection*=-1;searchLastSwitch=now;}
+    goal=searchDirection*0.55;
+    if(elapsed>750 && now>emotionUntil && scene.classList.contains('surprise')){
+      scene.classList.remove('surprise');status.textContent='오빠 어디 있지? 👀';
+    }
+  }else{
+    goal=0;
+    if(now>emotionUntil){
+      scene.classList.remove('surprise','happy','sleep');
+      status.textContent='돌아올 때까지 기다릴게 😊';
+    }
+  }
+}
+
+function loadFaceDetection(){
+  if(window.FaceDetection)return Promise.resolve();
+  return new Promise((resolve,reject)=>{
+    const script=document.createElement('script');
+    script.src='https://cdn.jsdelivr.net/npm/@mediapipe/face_detection@0.4/face_detection.js';
+    script.onload=()=>window.FaceDetection?resolve():reject(new Error('얼굴 추적 기능을 불러올 수 없음'));
+    script.onerror=()=>reject(new Error('얼굴 추적 코드 다운로드 실패: 인터넷 확인'));
+    document.head.appendChild(script);
+  });
+}
+async function startCamera(){
+  if(active)return;
+  startButton.disabled=true;
+  updateCameraMessage('카메라 권한 확인 중…');
+  if(!navigator.mediaDevices?.getUserMedia){
+    updateCameraMessage('카메라 실행 불가 ❌');
+    updateCameraHelp('현재 파일 실행 방식에서 카메라를 지원하지 않아. HTTPS 주소에서 열어야 할 수 있어. 화면의 손가락 테스트는 정상 작동해.');
+    startButton.disabled=false;
+    return;
+  }
+  const myGeneration=++trackerGeneration;
+  try{
+    camStream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:'user',width:{ideal:640},height:{ideal:480},frameRate:{ideal:24,max:30}}});
+    video.srcObject=camStream;
+    await video.play();
+    active=true;startedAt=Date.now();seenFaceAt=startedAt;presence='idle';absenceSince=0;
+    stopButton.disabled=false;
+    updateCameraMessage('카메라 연결 ✅ · 얼굴 추적 준비 중…');
+    await loadFaceDetection();
+    if(!active||myGeneration!==trackerGeneration)return;
+    detector=new FaceDetection({locateFile:file=>`https://cdn.jsdelivr.net/npm/@mediapipe/face_detection@0.4/${file}`});
+    detector.setOptions({model:'short',minDetectionConfidence:0.55,selfieMode:true});
+    detector.onResults(results=>{
+      const face=results.detections?.[0];
+      if(face){
+        const box=face.boundingBox;
+        applyFaceResult(true,box.xCenter,box.yCenter,box.width);
+      }else applyFaceResult(false);
+    });
+    updateCameraMessage('카메라 연결 ✅ · 얼굴 찾는 중…');
+    let lastFrame=0;
+    const process=async(time)=>{
+      if(!active||myGeneration!==trackerGeneration)return;
+      frameLoopId=requestAnimationFrame(process);
+      if(sending||time-lastFrame<(speedFast?65:115))return;
+      if(video.readyState<2)return;
+      sending=true;lastFrame=time;
+      try{await detector.send({image:video});}
+      catch(err){updateCameraMessage('얼굴 추적 처리 오류 ❌');updateCameraHelp(String(err.message||err));stopCamera();}
+      finally{sending=false;}
+    };
+    frameLoopId=requestAnimationFrame(process);
+  }catch(err){
+    const name=err?.name||'';
+    updateCameraMessage('카메라 또는 얼굴 추적 시작 실패 ❌');
+    let hint=name==='NotAllowedError'?'카메라 권한이 거부됐어. 크롬의 사이트 설정에서 카메라를 허용해 줘.':
+      name==='NotFoundError'?'전면 카메라를 찾지 못했어.':
+      /download|fetch|network|code/i.test(err.message||'')?'인터넷 연결이 필요해. 얼굴 추적 프로그램을 불러오지 못했어.':
+      '오류: '+String(err.message||name||err);
+    updateCameraHelp(hint+' · 화면 터치 테스트는 계속 사용할 수 있어.');
+    stopCamera();
+  }
+}
+function stopCamera(){
+  trackerGeneration++;active=false;lastFound=false;presence='idle';
+  clearTimeout(reactionTimer);emotionUntil=0;scene.classList.remove('surprise','happy','sleep');status.textContent='오빠! 나 여기 있어. 😊';
+  if(frameLoopId)cancelAnimationFrame(frameLoopId);
+  frameLoopId=0;
+  camStream?.getTracks().forEach(track=>track.stop());
+  camStream=null;video.pause();video.srcObject=null;
+  if(detector){try{detector.close();}catch(e){}detector=null;}
+  startButton.disabled=false;stopButton.disabled=true;
+  goal=0;
+}
+startButton.addEventListener('click',startCamera);
+stopButton.addEventListener('click',()=>{stopCamera();updateCameraMessage('카메라 꺼짐 · 손가락으로 움직여 봐');});
+document.getElementById('previewToggle').addEventListener('change',e=>{preview.hidden=!e.target.checked;});
+document.addEventListener('visibilitychange',()=>{if(document.hidden && active){stopCamera();updateCameraMessage('화면을 벗어나 카메라를 껐어. 다시 켜 줘.');}});
+function animate(){
+  updateSearching(Date.now());
+  if(!active&&Date.now()>manualUntil)goal*=0.96;
+  if(Date.now()>manualUntil&&manualUntil!==0){manualUntil=0;if(!active)goal=0;}
+  actual+=(goal-actual)*(speedFast?0.36:0.15);
+  head.setAttribute('transform',`rotate(${(actual*7).toFixed(2)} 210 355)`);
+  requestAnimationFrame(animate);
+}
+requestAnimationFrame(animate);
+document.getElementById('headTest').addEventListener('click',()=>{
+  testDirection*=-1;goal=testDirection;manualUntil=Date.now()+1600;
+  status.textContent='고개 움직임 테스트 중 ↔';
+  clearTimeout(reactionTimer);
+  reactionTimer=setTimeout(()=>{if(!scene.classList.contains('sleep'))neutral();},1500);
+});
+</script></body></html>
